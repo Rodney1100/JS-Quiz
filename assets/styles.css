@@ -1,0 +1,58 @@
+:root {
+    --background-color: rgb(179, 202, 179);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: var(--tertiary-color);
+    font-family: Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    background-color: rgb(116, 117, 118);
+}
+
+.container {
+    background-color: var(--background-color);
+    width: 100%;
+    max-width: 80%;
+    box-shadow: 0 0 10px 2px;
+    border-radius: 10px;
+}
+
+.btn-grid {
+    width: 50%;
+    display: grid;
+    margin: 20px 0px;
+}
+
+.btn {
+    max-width: 100%;
+    margin: 5px 5px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    border: 2px solid black;
+    background-color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
+}
+
+.questions {
+    padding: 5px;
+    margin-top: 5px;
+    background-color: white;
+    max-width: 98%;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}

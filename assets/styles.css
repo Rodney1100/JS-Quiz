@@ -21,13 +21,22 @@ body {
 .container {
     background-color: var(--background-color);
     width: 100%;
-    max-width: 80%;
+    max-width: 90%;
     box-shadow: 0 0 10px 2px;
     border-radius: 10px;
+    justify-content: center;
+    display: grid;
 }
 
-.btn-grid {
-    width: 50%;
+.questions {
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+.btn-grid,
+.start-btn {
+    width: 100%;
+    max-width: 100%;
     display: grid;
     margin: 20px 0px;
 }
@@ -37,8 +46,13 @@ body {
     margin: 5px 5px;
     padding: 10px 10px;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 1.8vw;
     font-weight: bold;
+    text-align: left;
+}
+
+.blue {
+    background-color: blue;
 }
 
 .btn:hover {
@@ -47,12 +61,25 @@ body {
     color: rgb(255, 255, 255);
 }
 
+.start-btn {
+    width: 100%;
+    padding: 50px 50px;
+    font-size: 10vw;
+}
+
+.hide {
+    display: none;
+}
+
 .questions {
     padding: 5px;
     margin-top: 5px;
     background-color: white;
-    max-width: 98%;
+    width: 99%;
+    float: ROGHT;
+    border-radius: 5px;
+    max-width: 100vw;
     margin-left: 5px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 3.5vw;
 }

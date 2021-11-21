@@ -5,31 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="./assets/styles.css">
+    <!-- <meta http-equiv="refresh" content="14; url=/highScores.html"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Quiz
     </title>
 </head>
 <header class="timer high-score">
+    <Div class="highScore">
+        <a id="vhighScores" href="./highScores.html">View High Scores</a>
+        <div class="timercount">
+            <h2 id="countdown"></h2>
+            <p id="main"></p>
+        </div>
+    </Div>
 </header>
 
 <body>
-    <div class="container">
-        <span id="qContainer" class="hide">
-        <div id="question" class="questions">Question</div>
-        <div class="btn-grid" id="answer-key"> </div>
-        </span>
-        <div class="start-next">
-            <button class="start-btn btn" id="start-btn">Start</button>
+    <div class="namein" id="bodyy">
+        <button class="nameInput btnSub btn hide" id="submitBtn"> Submit</button>
+    </div>
+    <div>
+        <div class="container">
+            <span id="qContainer" class="hide">
+                <div id="question" class="questions">Question</div>
+                <div class="btn-grid" id="answer-key"> </div>
+            </span>
+            <div class="start-next">
+                <button class="start-btn btn" id="start-btn">Start</button>
+                <div>
+                    <p class="right hide" id="right">Correct!</p>
+                    <p class="wrong hide" id="wrong">Wrong!</p>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="scorePage hidd" id="showScore">
 
+    </div>
 </body>
 
 <script src="./js/jsScript.js"></script>
 
 </html>
-
-<!-- <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button> -->

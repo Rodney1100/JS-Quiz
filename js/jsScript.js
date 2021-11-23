@@ -3,17 +3,20 @@ var containerEl = document.querySelector("#qContainer");
 var questionEl = document.querySelector("#question");
 var answerBtnEl = document.querySelector("#answer-key");
 var bodyEl = document.querySelector("#bod");
+var counting = document.querySelector("#count");
 var bodyyEl = document.querySelector("#bodyy");
 var timerEl = document.getElementById("countdown");
 var mainEl = document.getElementById("main");
 var rightEl = document.getElementById("right");
 var wrongEl = document.getElementById("wrong");
 var highscoreEl = document.getElementById("vhighScores");
-var submitEl = document.querySelector("submitBtn");
+var submitEl = document.getElementById("submitBtn");
+var hsList = document.getElementById("hsList");
+var formEl = document.getElementById("formHs");
+var vHSBtn = document.getElementById("vhighScores");
 var showScoreEl = document.getElementById("ShowScore");
-
+var highScoreList = []
 var shuffledQuestions, i;
-i = 0;
 var time = 10
 var questions = [{
         question: "What is my name?",
@@ -76,7 +79,7 @@ var questions = [{
         ],
     },
     {
-        question: "What is my Day?",
+        question: "What is my eye?",
         answer: [{
                 text: "1: Mon",
                 correct: false,
@@ -96,9 +99,9 @@ var questions = [{
         ],
     },
     {
-        question: "What is my sign?",
+        question: "What is my Day?",
         answer: [{
-                text: "1: grrr",
+                text: "1: Mon",
                 correct: false,
             },
             {
@@ -106,70 +109,86 @@ var questions = [{
                 correct: true,
             },
             {
-                text: "3:  Black",
+                text: "3: KodaK Black",
                 correct: false,
             },
             {
-                text: "4: JNopr",
+                text: "4: Ronnold",
                 correct: false,
             },
         ],
     },
 ];
+counting.classList.remove("timercount")
 var startGame = function() {
+    i = 0;
     countdown(time);
+    counting.classList.add("timercount")
     startBtnEl.classList.add("hide");
     shuffledQuestions = questions.sort(() => Math.random() - 0.5);
     containerEl.classList.remove("hide");
     nextQuestion();
 };
-var hsScore = function() {
-    console.log("hello");
-    alert("it worked")
-        // restartGame()
+var hsScore = function(event) {
+    let hsItem = document.createElement("li")
+    hsItem.textContent = (bodyEl.value + " " + pointIncrament)
+    highScoreList.push(hsItem.textContent)
+    highScoreList.push(bodyyEl.value)
+    hsItem.innerHTML = "<p class='makeCenter'>Recent Score</p> </br> " +
+        hsItem.textContent
+        // toString(hsItem)
+        // hsItem.toUpperCase();
+    hsList.appendChild(hsItem)
+    bodyyEl.classList.add("hide");
+    console.log(highScoreList)
+    replay()
 };
-var saveGame = function() {
+
+function replay() {
+    var replayEl = document.createElement("button");
+    replayEl.className = "nameInput start-btn namein btnSub btn";
+    replayEl.textContent = "PlayAgain";
+    formEl.appendChild(replayEl);
+}
+
+var saveGame = function(event) {
+    containerEl.classList.add("hide");
     wrongEl.classList.add("hide");
     rightEl.classList.add("hide");
-    containerEl.classList.add("hide");
-    var enterNameEl = document.createElement("p");
+    enterNameEl = document.createElement("p");
     enterNameEl.innerHTML =
         "<p class='makeBig'> All done!</p> <p class='makeSmaller'>You Scored " +
         pointIncrament +
         "/" +
-        shuffledQuestions.length +
+        (shuffledQuestions.length) +
         "</p>";
     enterNameEl.className = "nameInput";
     bodyyEl.appendChild(enterNameEl);
-    var bodyEl = document.createElement("input");
-    bodyEl.className = "nameInput";
-    bodyEl.name = "place your initials here";
+    bodyEl = document.createElement("input");
+    bodyEl.className = "nameInput namein btnSub btn";
     bodyEl.placeholder = "place your initials here";
+    bodyEl.name = "initials"
     bodyyEl.appendChild(bodyEl);
     submitEl.classList.remove("hide")
+    submitEl.type = "submit";
+    bodyyEl.appendChild(submitEl)
     submitEl.addEventListener("click", hsScore);
-    hsScore()
-        // submitEl.addEventListener("click", restartGame)
+    counting.classList.remove("timercount")
+    counting.classList.add("hide")
+
 };
 
-function restartGame() {
-    // bodyyEl.classList.add("hide");
-    // startBtnEl.classList.remove("hide");
-    // startBtnEl.innerText = "ReStart";
-
-    // startBtnEl.addEventListener("click", startGame)
-}
 var countdown = function(time) {
     var timeLeft = time;
     var timeInterval = setInterval(function() {
+        if ((i + 2) > shuffledQuestions.length) {
+            console.log("you are on q " + (i - 1))
+            console.log("there is suppose to be " + shuffledQuestions.length)
+            timeLeft -= timeLeft;
+        } else {}
         pts = i;
         if (timeLeft > 1) {
-            if (points == pts - 1) {
-                if (questions.length < i) {
-                    console.log("the restart should run");
-                    timeLeft -= timeLeft;
-                }
-            } else {
+            if (points == pts - 1) {} else {
                 timeLeft -= 3;
                 points = pts - 1;
             }
@@ -179,41 +198,41 @@ var countdown = function(time) {
             timerEl.textContent = "Time: " + timeLeft;
             timeLeft--;
         } else {
-            timerEl.textContent = "Time is Up";
+            timerEl.textContent = "Finished";
             clearInterval(timeInterval);
             saveGame();
         }
     }, 1000);
 };
+
 var selectAnswers = function(e) {
     var selectedButton = e.target;
     var correct = selectedButton.dataset.correct;
     removeAnswer();
     setStatusClass(correct);
-    if (shuffledQuestions.length >= i) {} else {
-        restartGame();
+    if (questions.length <= i) {
         rightEl.classList.add("hide");
         wrongEl.classList.add("hide");
-        // restartGame()
-    }
+    } else {}
 };
 
 var nextQuestion = function() {
     resetState();
+    // console.log(i)
     showQuestion(shuffledQuestions[i]);
+    // console.log(shuffledQuestions[i]);
     i++;
 };
-var isCorrect;
-var showQuestion = function(questions) {
+var showQuestion = function(shuffledQuestions) {
     resetState();
-    questionEl.innerText = questions.question;
-    for (var i = 0; i < questions.answer.length; i++) {
+    questionEl.innerText = shuffledQuestions.question;
+    for (var i = 0; i < shuffledQuestions.answer.length; i++) {
         var buttonEl = document.createElement("button");
         buttonEl.className = "btn-grid btn";
-        buttonEl.innerText = questions.answer[i].text;
+        buttonEl.innerText = shuffledQuestions.answer[i].text;
         answerBtnEl.appendChild(buttonEl);
-        if (questions.answer[i].correct) {
-            buttonEl.dataset.correct = questions.answer[i].correct;
+        if (shuffledQuestions.answer[i].correct) {
+            buttonEl.dataset.correct = shuffledQuestions.answer[i].correct;
         }
     }
 };
@@ -227,8 +246,6 @@ var resetState = function() {
         answerBtnEl.removeChild(answerBtnEl.firstChild);
     }
 };
-
-
 var points = 0;
 var pointIncrament = 0;
 
@@ -241,6 +258,23 @@ function setStatusClass(correct) {
         wrongEl.classList.remove("hide");
     }
 }
+
+function saveHighScoreList() {
+    localStorage.setItem("highScoreList", JSON.stringify(highScoreList))
+}
+
+// function loadHighScoreList() {
+//     // var loadTask = function() {
+//     var savedTasks = localStorage.getItem("tasks");
+//     if (!savedTasks) {
+//         return false;
+//     }
+//     savedTasks = JSON.parse(savedTasks)
+//     console.log(savedTasks);
+//     for (var i = 0; i < savedTasks.length; i++) { createTaskEl(savedTasks[i]) }
+//     console.log(tasks[i]);
+// }
+
 answerBtnEl.addEventListener("click", selectAnswers);
 startBtnEl.addEventListener("click", startGame);
 answerBtnEl.addEventListener("click", nextQuestion);

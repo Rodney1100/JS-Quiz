@@ -12,11 +12,15 @@
 </head>
 <header class="timer high-score">
     <Div class="highScore">
-        <a id="vhighScores" href="./highScores.html">View High Scores</a>
-        <div class="timercount">
+        <button class="btn start-btn" id="vhighScores">View High Scores</button>
+        <div id="count" class="timercount">
             <h2 id="countdown"></h2>
             <p id="main"></p>
         </div>
+        <form class="formEl" id="formHs">
+            <ul class="highScoreList" id="hsList">
+            </ul>
+        </form>
     </Div>
 </header>
 
@@ -39,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="scorePage hidd" id="showScore">
+    <div class="scorePage hide" id="showScore">
 
     </div>
 </body>

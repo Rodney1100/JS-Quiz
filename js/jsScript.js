@@ -131,14 +131,15 @@ var startGame = function() {
 };
 var hsScore = function(event) {
     let hsItem = document.createElement("li")
+    JSON.stringify(bodyEl.value)
+    bodyEl.value.toUppercase
     hsItem.textContent = (bodyEl.value + " " + pointIncrament)
     highScoreList.push(hsItem.textContent)
     highScoreList.push(bodyyEl.value)
     hsItem.innerHTML = "<p class='makeCenter'>Recent Score</p> </br> " +
         hsItem.textContent
-        // toString(hsItem)
-        // hsItem.toUpperCase();
     hsList.appendChild(hsItem)
+    saveHighScoreList()
     bodyyEl.classList.add("hide");
     console.log(highScoreList)
     replay()
@@ -147,8 +148,9 @@ var hsScore = function(event) {
 function replay() {
     var replayEl = document.createElement("button");
     replayEl.className = "nameInput start-btn namein btnSub btn";
-    replayEl.textContent = "PlayAgain";
+    replayEl.textContent = "Play Again";
     formEl.appendChild(replayEl);
+    // replayEl.addEventListener("click", saveHighScoreList)
 }
 
 var saveGame = function(event) {
@@ -172,10 +174,16 @@ var saveGame = function(event) {
     submitEl.classList.remove("hide")
     submitEl.type = "submit";
     bodyyEl.appendChild(submitEl)
-    submitEl.addEventListener("click", hsScore);
     counting.classList.remove("timercount")
     counting.classList.add("hide")
-
+    while (bodyEl.value.length == 0) {
+        if (bodyEl.value.length == 0) {
+            console.log("Please write your initials")
+        } else {
+            submitEl.addEventListener("click", hsScore);
+        }
+    }
+    // hsScore()
 };
 
 var countdown = function(time) {
@@ -263,17 +271,17 @@ function saveHighScoreList() {
     localStorage.setItem("highScoreList", JSON.stringify(highScoreList))
 }
 
-// function loadHighScoreList() {
-//     // var loadTask = function() {
-//     var savedTasks = localStorage.getItem("tasks");
-//     if (!savedTasks) {
-//         return false;
-//     }
-//     savedTasks = JSON.parse(savedTasks)
-//     console.log(savedTasks);
-//     for (var i = 0; i < savedTasks.length; i++) { createTaskEl(savedTasks[i]) }
-//     console.log(tasks[i]);
-// }
+function loadHighScoreList() {
+    // var loadTask = function() {
+    var savedTasks = localStorage.getItem("tasks");
+    if (!savedTasks) {
+        return false;
+    }
+    savedTasks = JSON.parse(savedTasks)
+    console.log(savedTasks);
+    for (var i = 0; i < savedTasks.length; i++) { createTaskEl(savedTasks[i]) }
+    console.log(tasks[i]);
+}
 
 answerBtnEl.addEventListener("click", selectAnswers);
 startBtnEl.addEventListener("click", startGame);

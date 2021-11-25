@@ -8,28 +8,37 @@
     padding: 0;
 }
 
+
+/* body styling */
+
 body {
-    /* color: var(--tertiary-color); */
     font-family: Helvetica, Arial, sans-serif;
     margin-top: 30px;
     background-color: rgba(255, 255, 255, 0.726);
 }
+
+
+/* questions answers */
 
 .right,
 .wrong {
     opacity: 70%;
 }
 
+
+/* question answes styling ends */
+
+
+/* questions styling starts */
+
 body .nameInput {
     align-items: center;
 }
 
 .container {
-    /* background-color: var(--background-color); */
     width: 70%;
     margin-top: 20px;
     max-width: 90%;
-    /* box-shadow: 0 0 10px 2px; */
     border-radius: 10px;
     justify-content: center;
     display: grid;
@@ -70,12 +79,10 @@ body div {
 }
 
 .namein {
-    /* background-color: var(--background-color); */
     width: 70%;
     color: rgb(0, 0, 0);
     margin-top: 20px;
     max-width: 90%;
-    /* box-shadow: 0 0 10px 2px; */
     border-radius: 10px;
     justify-content: center;
     display: grid;
@@ -100,6 +107,12 @@ body div {
 .makeSmaller {
     font-size: 2.5vw;
 }
+
+
+/* questions styling ends */
+
+
+/* button styling starts */
 
 .btn-grid,
 .start-btn {
@@ -149,10 +162,6 @@ body div {
     color: red;
 }
 
-.gold {
-    color: gold;
-}
-
 header a,
 a,
 .timercount {
@@ -160,7 +169,6 @@ a,
     padding: 10px 20px;
     color: rgba(0, 0, 0, 0.753);
     font-size: 15px;
-    /* background-color: var(--background-color); */
     font-weight: bold;
     box-shadow: 0 0 5px 2px;
     border-radius: 10px;
@@ -185,7 +193,14 @@ a,
     margin: auto;
 }
 
-.formEl ul {
+
+/* button styling ends */
+
+
+/* form styling starts */
+
+.formEl,
+.ulike {
     list-style: none;
 }
 
@@ -203,3 +218,6 @@ a,
     margin-top: 50px;
     font-size: 3vw
 }
+
+
+/* form styling ends */

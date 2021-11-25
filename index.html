@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./assets/styles.css">
-    <!-- <meta http-equiv="refresh" content="14; url=/highScores.html"> -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Quiz
     </title>
 </head>
+<!-- timer , view high score and high score list is created here -->
 <header id="top-Of-Page" class="timer high-score">
     <Div class="highScore">
         <button class="btn hsBtn start-btn" id="vhighScores">View High Scores</button>
@@ -25,10 +25,13 @@
 </header>
 
 <body>
+    <img src="./assets/images/jsQuiz.PNG" alt="">
+    <!-- start btn and questions are generated -->
     <div class="namein" id="bodyy">
         <button class="nameInput btnSub btn hide" id="submitBtn"> Submit</button>
     </div>
     <div>
+        <!-- contains the questions -->
         <div class="container">
             <span id="qContainer" class="hide">
                 <div id="question" class="questions">Question</div>
@@ -43,6 +46,7 @@
             </div>
         </div>
     </div>
+    <!-- hides and shows the score pages when appropriate -->
     <div class="scorePage hide" id="showScore">
 
     </div>

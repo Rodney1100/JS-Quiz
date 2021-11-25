@@ -21,111 +21,90 @@ var shuffledQuestions, i, enterNameMessage;
 var time = 5000
     // questions for the quiz
 var questions = [{
-        question: "What is my name?",
+        question: "Inside which HTML element do we put the JavaScript?",
         answer: [{
-                text: "1: Rodney",
+                text: "1: <script>",
                 correct: true,
             },
             {
-                text: "2: Jack",
+                text: "2: <js>",
                 correct: false,
             },
             {
-                text: "3: KodaK Black",
+                text: "3: <scripting>",
                 correct: false,
             },
             {
-                text: "4: Ronnold",
+                text: "4: <javaScript>",
                 correct: false,
             },
         ],
     },
     {
-        question: "What is my time?",
+        question: "Where is the correct place to insert a JavaScript?",
         answer: [{
-                text: "1: Rodney",
+                text: "1:  The <head> section",
+                correct: false,
+            },
+            {
+                text: "2:  Both the <head> section and the <middle> section are correct",
+                correct: false,
+            },
+            {
+                text: "3:  the middle",
+                correct: false,
+            },
+            {
+                text: "4: the bottom of the body",
+                correct: true,
+            },
+        ],
+    },
+    {
+        question: "What is the correct syntax for referring to an external script called 'xxx.js' ? ",
+        answer: [{
+                text: "1: <script href = 'xxx.js'>",
+                correct: false,
+            },
+            {
+                text: "2: <script src = 'xxx.js'>",
                 correct: true,
             },
             {
-                text: "2: Jack",
+                text: "3: <script name= 'xxx.js'>",
                 correct: false,
             },
             {
-                text: "3: KodaK Black",
-                correct: false,
-            },
-            {
-                text: "4: Ronnold",
+                text: "4: you call it from the js file",
                 correct: false,
             },
         ],
     },
     {
-        question: "What is my year?",
+        question: "JavaScript is the same as Java. ",
         answer: [{
-                text: "1: 90",
+                text: "1: true",
                 correct: false,
             },
             {
-                text: "2: 92",
+                text: "2: false",
                 correct: true,
             },
-            {
-                text: "3: KodaK Black",
-                correct: false,
-            },
-            {
-                text: "4: Ronnold",
-                correct: false,
-            },
         ],
-    },
-    {
-        question: "What is my eye?",
-        answer: [{
-                text: "1: Mon",
-                correct: false,
-            },
-            {
-                text: "2: Fri",
-                correct: true,
-            },
-            {
-                text: "3: KodaK Black",
-                correct: false,
-            },
-            {
-                text: "4: Ronnold",
-                correct: false,
-            },
-        ],
-    },
-    {
-        question: "What is my Day?",
-        answer: [{
-                text: "1: Mon",
-                correct: false,
-            },
-            {
-                text: "2: Fri",
-                correct: true,
-            },
-            {
-                text: "3: KodaK Black",
-                correct: false,
-            },
-            {
-                text: "4: Ronnold",
-                correct: false,
-            },
-        ],
-    },
+    }
 ];
 // this is out here because it needs to be global
 counting.classList.remove("timercount")
-    //  everything that needs to start the game after click
+    // this remove the answers to start and save the score
+function resetscores() {
+    while (highScores.firstChild) {
+        highScores.removeChild(highScores.firstChild);
+    }
+}
+//  everything that needs to start the game after click
 var startGame = function() {
     //  this gets the buttons off the screen
+    resetscores()
     vHSBtn.classList.remove("hide");
     deleteEl.classList.add("hide");
     startBtnEl.classList.add("hide");
@@ -138,15 +117,18 @@ var startGame = function() {
     nextQuestion();
 };
 // setting the score after the quiz
+let hsItemStorage = document.createElement("ul")
 var hsScore = function() {
-    let hsItem = document.createElement("li")
-    JSON.stringify(bodyEl.value)
+    resetscores()
+    hsItemStorage.classList.add("ulike")
+    var hsItem = document.createElement("li")
+    hsItemStorage.appendChild(hsItem)
     bodyEl.value.toUppercase
     hsItem.textContent = (bodyEl.value + " " + pointIncrament)
     highScoreList.push(hsItem.textContent)
-    hsItem.innerHTML = "<p class='makeCenter'>Recent Score</p> </br> " +
+    hsItem.innerHTML = "<p class='makeCenter ulike'>Recent Score</p> </br> " +
         hsItem.textContent
-    hsList.appendChild(hsItem)
+    hsList.appendChild(hsItemStorage)
     saveHighScoreList()
     bodyyEl.classList.add("hide");
     // console.log(highScoreList)
@@ -328,28 +310,33 @@ function deleteScore() {
     deleteEl.addEventListener("click", deleting)
 }
 // loads the score back to the screen
+var highScores = document.createElement("div")
+var topOfPage = document.getElementById("top-Of-Page");
+
 function loadHighScoreList() {
     deleteScore()
-        // brings the screen 
+    while (hsItemStorage.firstChild) {
+        hsItemStorage.removeChild(hsItemStorage.firstChild);
+    }
+    // brings the scrores back
     var savedScore = localStorage.getItem("highScoreList");
     if (savedScore.length == 0) {
-        console.log("load game ran 1111");
         return false;
     }
-    var topOfPage = document.getElementById("top-Of-Page");
-    console.log(topOfPage)
-    highScoreList = JSON.parse(savedScore)
-    var highScores = document.createElement("ul")
-    highScores.setAttribute = ("id", "HSList")
+    //  creating the leader board
+    highScores.className = ("ulike")
     topOfPage.appendChild(highScores);
+    highScoreList = JSON.parse(savedScore)
+    highScores.setAttribute = ("id", "scoreKepper")
+        // created the score board
     for (var i = 0; i < highScoreList.length; i++) {
         var newli = document.createElement("li")
         newli.className = ("btn str")
         console.log(highScoreList[i]);
-        highScores.appendChild(newli)
         newli.innerText = highScoreList[i];
+        highScores.appendChild(newli)
     }
-    console.log(!savedScore);
+    // console.log(highScores);
 }
 // the eventListeners that can run one of functions
 vHSBtn.addEventListener("click", loadHighScoreList)

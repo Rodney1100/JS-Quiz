@@ -1,5 +1,5 @@
 # week4challenge
-![picture or application](src="./assets/images/jsQuiz.PNG")
+![picture or application](./assets/images/jsQuiz.PNG)
 
 
 When the start button is clicked, a timer starts and you will be presented with a question.

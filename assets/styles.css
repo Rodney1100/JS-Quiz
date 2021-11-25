@@ -141,6 +141,18 @@ body div {
     display: none;
 }
 
+.blue {
+    color: blue;
+}
+
+.red {
+    color: red;
+}
+
+.gold {
+    color: gold;
+}
+
 header a,
 a,
 .timercount {
@@ -175,6 +187,16 @@ a,
 
 .formEl ul {
     list-style: none;
+}
+
+.hsBtn,
+.start-btn {
+    margin-left: -0px;
+}
+
+.str {
+    text-align: center;
+    font-size: 2vw;
 }
 
 .makeCenter {

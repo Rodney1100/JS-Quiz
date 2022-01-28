@@ -1,4 +1,4 @@
-# week4challenge
+# JS Quiz
 Link to page -->
 https://rodney1100.github.io/week4challenge/
 
